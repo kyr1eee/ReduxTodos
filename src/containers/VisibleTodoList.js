@@ -16,6 +16,7 @@ const showVisibleTodos = (todos, filter) => {
     }
 }
 
+// TodoList.props = {...TodoList.props, todos}
 const mapStateToProps = state => ({
     todos: showVisibleTodos(state.todos, state.visibilityFilter)
 })
