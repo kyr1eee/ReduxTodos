@@ -21,6 +21,7 @@ const mapStateToProps = state => ({
     todos: showVisibleTodos(state.todos, state.visibilityFilter)
 })
 
+// TodoList.props.toggleTodo = id => dispatch(toggleTodo(id))
 const mapDispatchToProps = dispatch => ({
     toggleTodo: id => dispatch(toggleTodo(id))
 })

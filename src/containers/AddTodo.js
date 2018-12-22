@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { addTodo } from '../actions';
 
+// 解构获取 props.dispatch
 const AddTodo = ({ dispatch }) => {
     let textInput;
 
@@ -24,4 +25,6 @@ const AddTodo = ({ dispatch }) => {
     )
 }
 
+// connect(mapStateToProps, mapDispatchToProps)
+// 不传递mapDispatchToProps则默认传递 props.dispatch
 export default connect()(AddTodo);
