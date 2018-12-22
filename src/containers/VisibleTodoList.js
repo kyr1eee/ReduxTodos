@@ -26,6 +26,7 @@ const mapDispatchToProps = dispatch => ({
     toggleTodo: id => dispatch(toggleTodo(id))
 })
 
+// redux store 绑定 TodoList组件
 export default connect(
     mapStateToProps,
     mapDispatchToProps
