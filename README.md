@@ -40,6 +40,7 @@ reducer: {
 ```
 
 <hr>
+
 [+] Store : 整个应用只能有一个store.
 ``` 
 import { createStore } from 'redux';
