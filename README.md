@@ -30,6 +30,20 @@ export function showAll(data) {
     data
   }
 }
+
+export function getUpdate(update) {
+  return {
+    type: 'UPDATE',
+    update
+  }
+}
+
+export function getSelect(select) {
+  return {
+    type: 'SELECT',
+    select
+  }
+}
 ```
 
 [+]dispatch: 发出Action的唯一方法
@@ -55,10 +69,44 @@ export function update(state, action) {
 }
 ```
 
+[+]combineReducer: 合并所有reducer
+```
+import combineReducer from 'redux';
+import update from './updateReducer';
+import select from './selectReducer';
+export default combineReducer({
+  update,
+  select,
+});
+
+// 此时state: {update, select}
+```
+
 [+]subscribe : 设置监听函数,state一旦变化则调用该函数.store.subscribe返回一个函数,调用则解除监听
 ```
 // 设置监听函数
 let unsubscribe = store.subscribe(() => { console.log(store.getState()) });
 // 解除监听
 unsubscribe();
+```
+
+[+]mapStateToProps: state转化为props
+```
+const mapStateToProps = state => {
+  update: state.update,
+  select: state.select,
+}
+```
+[+]mapDispatchToProps: dispatch转化为props
+```
+const mapDispatchToProps = dispatch => {
+  getUpdate: update => dispatch(getUpdate(update)),
+  getSelect: select => dispatch(getSelect(select)),
+}
+```
+[+]connect
+```
+import {connect} from 'react-redux';
+const containerComponent = connect(mapStateToProps, mapDispatchToProps)(pureComponent)
+// pureComponent.props = {update:..., select:..., getUpdate:..., getSelect:...,}
 ```
