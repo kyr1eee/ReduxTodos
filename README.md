@@ -1,4 +1,5 @@
 ## redux
+![redux数据流](https://github.com/kyr1eee/Kyr1eeeFrontEndNote/blob/master/%E5%BE%85%E6%95%B4%E7%90%86/redux%E6%95%B0%E6%8D%AE%E6%B5%81.png)
 
 [+] Store : 整个应用只能有一个store.
 ``` 
