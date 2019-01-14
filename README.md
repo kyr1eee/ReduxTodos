@@ -35,7 +35,7 @@ reducer: {
 
 
 
-dispatch(容器组件) -> actionCreator(调用action事件) -> reducer(获取对应事件,进行对应数据处理) -> state(状态更新)
+<Provider>组件包裹 <- connect(绑定UI组件为容器组件) <- mapStateToProps,mapDispatchToProps(用于容器组件的props) <- dispatch(容器组件) -> actionCreator(调用action事件) -> store(自动处理, 将preState, action调度至reducer) -> reducer(获取对应事件,进行对应数据处理)  -> store(数据更新)
 
 ```
 
