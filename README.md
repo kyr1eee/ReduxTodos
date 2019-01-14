@@ -41,9 +41,13 @@ store.dispatch({
 ```
 export function update(state, action) {
   // action.type...
-  return {
-    ...state,
-    newData,
+  switch(action.type) {
+    case actionTypes.UPDATE:
+      return {...state, update: true}
+    case actionTypes.SELECT:
+      return {...state, select: true}
+    default:
+      return state
   }
 }
 ```
