@@ -1,6 +1,40 @@
 ## redux
 ![redux数据流](https://github.com/kyr1eee/Kyr1eeeFrontEndNote/blob/master/%E5%BE%85%E6%95%B4%E7%90%86/redux%E6%95%B0%E6%8D%AE%E6%B5%81.png)
 
+## reduxTools数据流
+'''
+/*
+state: {
+  todos: [{
+    id: number,
+    text: string,
+    completed: boolean
+  }],
+  visibilityFilter: 'SHOW_ALL' / 'SHOWCOMPLITED' / 'SHOW_ACTIVE'
+}
+
+actionCreator: {
+  addTodo: function(text){
+    return {type: ADD_TODO, text, id: nextTodoId++}
+  }
+
+  toggleTodo: function(id) {
+    return {type: TOGGLE_TODO, id}
+  }
+
+  setVisibilityFilter: function(filter) {
+    return {type: SET_VISIBILITY_FILTER, filter}
+  }
+}
+
+
+*/
+
+dispatch(容器组件) -> actionCreator(调用action事件) -> reducer(获取对应事件,进行对应数据处理) -> state(状态更新)
+
+'''
+
+<hr>
 [+] Store : 整个应用只能有一个store.
 ``` 
 import { createStore } from 'redux';
@@ -111,3 +145,17 @@ import {connect} from 'react-redux';
 const containerComponent = connect(mapStateToProps, mapDispatchToProps)(pureComponent)
 // pureComponent.props = {update:..., select:..., getUpdate:..., getSelect:...,}
 ```
+
+[+]<Provider> : 让容器组件拿到state对象
+```
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
+let store = createStore(todoApp);
+render(
+<Provider store={store}>
+  <App />
+</Provider>,
+document.getElementByid('root')
+)
+```
+
