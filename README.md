@@ -3,7 +3,8 @@
 
 ## reduxTools数据流
 '''
-/*
+
+
 state: {
   todos: [{
     id: number,
@@ -28,7 +29,7 @@ actionCreator: {
 }
 
 
-*/
+
 
 dispatch(容器组件) -> actionCreator(调用action事件) -> reducer(获取对应事件,进行对应数据处理) -> state(状态更新)
 
