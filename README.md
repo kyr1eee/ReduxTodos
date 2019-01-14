@@ -107,6 +107,7 @@ const mapDispatchToProps = dispatch => {
 [+]connect
 ```
 import {connect} from 'react-redux';
+// 该容器组件绑定UI组件
 const containerComponent = connect(mapStateToProps, mapDispatchToProps)(pureComponent)
 // pureComponent.props = {update:..., select:..., getUpdate:..., getSelect:...,}
 ```
