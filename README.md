@@ -1,3 +1,5 @@
+## redux
+
 [+] Store : 整个应用只能有一个store.
 ``` 
 import { createStore } from 'redux';
@@ -50,4 +52,12 @@ export function update(state, action) {
       return state
   }
 }
+```
+
+[+]subscribe : 设置监听函数,state一旦变化则调用该函数.store.subscribe返回一个函数,调用则解除监听
+```
+// 设置监听函数
+let unsubscribe = store.subscribe(() => { console.log(store.getState()) });
+// 解除监听
+unsubscribe();
 ```
