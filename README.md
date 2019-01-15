@@ -39,9 +39,10 @@ reducer: {
   todos,
   visibilityFilter,
 }
+```
 
 
-
+```
 <Provider>组件包裹 <- connect(绑定UI组件为容器组件) <- mapStateToProps,mapDispatchToProps(用于容器组件的props) <- container(容器组件) -> actionCreator(负责dispatch action事件) -> action.type(指定事件) -> store(自动处理, 将preState, action调度至reducer) -> reducer(获取对应事件,进行对应数据处理)  -> store(数据更新)
 
 ```
@@ -63,18 +64,10 @@ const state = store.getState();
 
 [+]Action: 描述当前发生的事情, 改变state的唯一方法
 ```
-const action = {
-  type: 'SHOW_ALL'
-  data: '...'
-}
-```
-
-[+]Action Creator: 多种Action情况
-```
-export function showAll(data) {
+export function action(data) {
   return {
     type: 'SHOW_ALL',
-    data
+    data: '...',
   }
 }
 
@@ -93,6 +86,27 @@ export function getSelect(select) {
 }
 ```
 
+[+]Action Creator: 同一ActionCreator对应多种Action情况
+```
+export function showAll(data) {
+  return (dispatch) => {
+    dispatch(showAll(data));
+  }
+}
+
+export function getUpdate(data) {
+  return (dispatch) => {
+    dispatch(getUpdate(data));
+  }
+}
+
+export function getSelect(data) {
+  return (dispatch) => {
+    dispatch(getSelect(data));
+  }
+}
+```
+
 [+]dispatch: 发出Action的唯一方法
 ```
 store.dispatch({
@@ -103,13 +117,20 @@ store.dispatch({
 
 [+]Reducer: state如何改变的过程
 ```
-export function update(state, action) {
+const initialState = {
+  test: null,
+  fa: null,
+  update: null,
+  select: null
+}
+
+export function update(state = initialState, action) {
   // action.type...
   switch(action.type) {
     case actionTypes.UPDATE:
-      return {...state, update: true}
+      return {...state, update: action.update}
     case actionTypes.SELECT:
-      return {...state, select: true}
+      return {...state, select: action.select}
     default:
       return state
   }
@@ -146,9 +167,12 @@ const mapStateToProps = state => {
 ```
 [+]mapDispatchToProps: dispatch转化为props
 ```
+import { bindActionCreators } from 'redux';
 const mapDispatchToProps = dispatch => {
   getUpdate: update => dispatch(getUpdate(update)),
   getSelect: select => dispatch(getSelect(select)),
+  // 使用action creator
+  moreAction: bindActionCreator(oneOfActionCreator, dispatch)
 }
 ```
 [+]connect
