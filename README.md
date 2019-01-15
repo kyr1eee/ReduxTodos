@@ -142,12 +142,17 @@ export function update(state = initialState, action) {
 import combineReducer from 'redux';
 import update from './updateReducer';
 import select from './selectReducer';
+...
+// combineReducer后, 此时reducer的命名则为state的属性之一(combineReducer决定state的结构)
 export default combineReducer({
   update,
   select,
+  system,
+  nav,
+  ...
 });
 
-// 此时state: {update, select}
+// 此时state: {update, select, system, nav, ...}
 ```
 
 [+]subscribe : 设置监听函数,state一旦变化则调用该函数.store.subscribe返回一个函数,调用则解除监听
