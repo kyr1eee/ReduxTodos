@@ -3,8 +3,7 @@
 
 ## reduxTools数据流
 ```
-
-
+// 全局状态
 state: {
   todos: [{
     id: number,
@@ -14,7 +13,8 @@ state: {
   visibilityFilter: 'SHOW_ALL' / 'SHOWCOMPLITED' / 'SHOW_ACTIVE'
 }
 
-actionCreator: {
+// 描述发生的事件
+action: {
   addTodo: function(text){
     return {type: ADD_TODO, text, id: nextTodoId++}
   }
@@ -28,6 +28,13 @@ actionCreator: {
   }
 }
 
+// 负责dispatch action
+actionCreator: {
+  toggleTodo: id => {return (dispatch) => { dispatch(toggleTodo(id)) },
+  onClick: () => {return (dispatch) => dispatch(setVisibilityFilter(ownProps.filter)) }
+}
+
+// action被dispatch后处理并返回新的state数据
 reducer: {
   todos,
   visibilityFilter,
